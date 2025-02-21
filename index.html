@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +6,12 @@
     <meta name="author" content="RaysunTech Solutions">
     <meta name="keywords" content="IT solutions, web design, cloud services, IT consulting">
     <meta name="theme-color" content="#4682b4">
-    <title>Raysun Tech - IT Services</title>
-    <link rel="favicon.ico" type="image/x-icon" href="favicon.ico">
+    <title>RTech Solutions - IT Services</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
         :root {
@@ -25,16 +25,40 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--light-bg);
             line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-padding-top: 70px;
         }
 
-        /* Navigation styles */
+        body.dark-mode {
+            --primary-color: #63a4ff;
+            --secondary-color: #4dab9a;
+            --text-color: #e0e0e0;
+            --light-bg: #2d2d2d;
+            background-color: #1a1a1a;
+            color: var(--text-color);
+        }
+
+        .dark-mode .navbar {
+            background-color: #2d2d2d !important;
+        }
+
+        .dark-mode .testimonial-card,
+        .dark-mode .services-section .col-md-4 {
+            background-color: #333 !important;
+            color: var(--text-color);
+        }
+
+        .dark-mode .footer-section {
+            background: linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
         .navbar {
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 1rem 0;
+            transition: background-color 0.3s;
         }
 
-        /* Hero section styles */
         .hero-section {
             background: linear-gradient(rgba(70, 130, 180, 0.8), rgba(70, 130, 180, 0.9)),
                         url('hero-bg.jpg') center/cover;
@@ -49,7 +73,6 @@
             animation: fadeInUp 1s ease;
         }
 
-        /* Services section styles */
         .services-section .col-md-4 {
             transition: transform 0.3s ease;
             padding: 2rem;
@@ -60,7 +83,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Testimonials styles */
         .testimonials-section {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
@@ -73,10 +95,9 @@
             margin: 1rem;
         }
 
-        /* Button styles */
         .btn {
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
+            padding: 0.6rem 1rem;
+            border-radius: 25px;
             text-transform: uppercase;
             font-weight: 500;
             letter-spacing: 1px;
@@ -89,11 +110,10 @@
         }
 
         .btn-primary:hover {
-            background-color: darken(var(--primary-color), 10%);
+            background-color: #3a6a94;
             transform: translateY(-2px);
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -105,7 +125,6 @@
             }
         }
 
-        /* Responsive images */
         .img-fluid {
             transition: transform 0.3s ease;
         }
@@ -114,141 +133,226 @@
             transform: scale(1.05);
         }
 
-        /* Footer enhancements */
         .footer-section {
             background: linear-gradient(45deg, #333 0%, #222 100%);
         }
 
-        .social-links a {
-            transition: color 0.3s ease;
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 !important;
+            }
+
+            .navbar {
+                padding: 0.5rem 0;
+            }
+
+            .navbar .d-flex {
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 0.9rem;
+                padding: 0.5rem 1rem;
+            }
         }
 
-        .social-links a:hover {
-            color: var(--primary-color) !important;
+        @media (max-width: 992px) {
+            .testimonial-card {
+                margin-bottom: 30px;
+            }
+            .hero-section {
+                padding: 100px 0;
+            }
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 0.6rem 1.5rem;
+            }
+            section {
+                padding-top: 30px;
+                scroll-margin-top: 70px;
+            }
         }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="logo.png" alt="RaysunTech Logo" height="40">
+            <a class="navbar-brand" href="#" aria-label="RTech Solutions Home">
+                <img src="images/logo.png" alt="RTech Solutions Logo" height="50">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+
+            <div class="d-flex justify-content-end align-items-center">
+
+                <button id="darkModeToggle" class="btn btn-sm btn-outline-secondary" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services" data-i18n="services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-i18n="about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-i18n="contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Home Page -->
     <header class="hero-section">
         <div class="container text-center">
-            <h1>Innovative IT Solutions for Your Business</h1>
-            <p>Providing top-notch web design, cloud services, and IT consulting.</p>
-            <a href="tel:+0728964904" class="btn btn-primary">Contact Us</a>
-            <a href="mailto:raysuntech@gmail.com" class="btn btn-secondary">Get a Quote</a>
+            <h1 data-i18n="welcome">Innovative IT Solutions for Your Business</h1>
+            <p data-i18n="tagline">Providing top-notch web design, cloud services, and IT consulting.</p>
+            <a href="tel:+27728964904" class="btn btn-primary" data-i18n="contactUs">Contact Us</a>
+            <a href="mailto:raysuntech@gmail.com" class="btn btn-secondary" data-i18n="getQuote">Get a Quote</a>
         </div>
     </header>
 
     <section id="services" class="services-section py-5">
         <div class="container">
-            <h2 class="text-center">Our Services</h2>
+            <h2 class="text-center" data-i18n="ourServices">Our Services</h2>
             <div class="row">
                 <div class="col-md-4 text-center">
                     <i class="fas fa-laptop-code fa-3x"></i>
-                    <h3>Web Design and Development</h3>
-                    <p>Creating stunning and responsive websites tailored to your business needs.</p>
-                    
+                    <h3 data-i18n="webDesign">Web Design and Development</h3>
+                    <p data-i18n="webDesignDesc">Creating stunning and responsive websites tailored to your business needs.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <i class="fas fa-cloud fa-3x"></i>
-                    <h3>Cloud Services</h3>
-                    <p>Offering scalable and secure cloud solutions on AWS, Azure, and Google Cloud.</p>
+                    <h3 data-i18n="cloudServices">Cloud Services</h3>
+                    <p data-i18n="cloudServicesDesc">Offering scalable and secure cloud solutions on AWS, Azure, and Google Cloud.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <i class="fas fa-cogs fa-3x"></i>
-                    <h3>IT Consulting</h3>
-                    <p>Providing expert IT consulting to optimize your business operations.</p>
+                    <h3 data-i18n="itConsulting">IT Consulting</h3>
+                    <p data-i18n="itConsultingDesc">Providing expert IT consulting to optimize your business operations.</p>
                 </div>
+                <!-- AI Incorporation -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-brain fa-3x"></i>
+                    <h3 data-i18n="aiIncorporation">AI Incorporation</h3>
+                    <p data-i18n="aiIncorporationDesc">Integrating cutting-edge AI solutions to automate and enhance your business processes.</p>
+                </div>
+                <!-- Logo Design -->
+                <div class="col-md-4 text-center">
+                    <i class="fas fa-palette fa-3x"></i>
+                    <h3 data-i18n="logoDesign">Logo Design</h3>
+                    <p data-i18n="logoDesignDesc">Crafting unique and memorable logos that represent your brand identity.</p>
+                </div>
+
             </div>
         </div>
     </section>
 
     <section id="testimonials" class="testimonials-section py-5 bg-light">
         <div class="container">
-            <h2 class="text-center">What Our Clients Say</h2>
-            <div class="row">
-                <div class="col-md-4 text-center testimonial-card">
-                    <p>"Raysun Tech transformed our online presence with a stunning website."</p>
-                    <p>- Jiresse Mungaza</p><br>
-                    <a href="http://powerfumigationsa.co.za" target="_blank">powerfumigationsa.co.za</a> 
-                </div>
-                <div class="col-md-4 text-center testimonial-card">
-                    <p>"Excellent IT consulting services that helped us streamline our operations."</p>
-                    <p>- Nosipho</p><br>
-                    <a href="http://numberonebuilds.co.za" target="_blank">numberonebuilds.co.za</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Page -->
-    <section id="about" class="about-section py-5">
-        <div class="container">
-            <h2 class="text-center">About Us</h2>
-            <p>Our mission is to provide innovative IT solutions that drive business success. We value integrity, excellence, and customer satisfaction.</p>
-            <h3 class="text-center">Meet the Team</h3>
+            <h2 class="text-center mb-5" data-i18n="testimonialsHeading">What Our Clients Say</h2>
             <div class="row justify-content-center">
-                <div class="col-md-4 text-center">
-                    <img src="image1.jpg" alt="Team Member 1" class="img-fluid rounded-circle">
-                    <h4>Denis Kasala</h4>
-                    <p>CEO</p>
-                    <div class="social-links mt-3">
-                        <a href="https://github.com/yourprofile" class="text-dark mx-2"><i class="fab fa-github"></i></a>
-                        <a href="https://twitter.com/yourprofile" class="text-dark mx-2"><i class="fab fa-twitter"></i></a>
-                        <a href="https://linkedin.com/in/yourprofile" class="text-dark mx-2"><i class="fab fa-linkedin-in"></i></a>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-quote-left fa-2x text-primary mb-3" aria-hidden="true"></i>
+                                <p class="card-text mb-4" data-i18n="testimonial1">"RTech Solutions transformed our online presence with a stunning website. Their attention to detail and professional approach made the entire process smooth and efficient."</p>
+                                <div class="testimonial-author">
+                                    <h5 class="mb-1">Jiresse Mungaza</h5>
+                                    <p class="text-muted mb-0" data-i18n="director">Director, <a href="https://www.numberonebuilds.co.za">Number One Builds</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                                <p class="card-text mb-4" data-i18n="testimonial2">"Excellent IT consulting services that helped us streamline our operations. Their team's expertise and dedication to our success was impressive."</p>
+                                <div class="testimonial-author">
+                                    <h5 class="mb-1">Nosipho</h5>
+                                    <p class="text-muted mb-0" data-i18n="director">Director, <a href="https://www.powerfumigationsa.co.za">Power Fumigation SA</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="testimonial-card h-100">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                                <p class="card-text mb-4" data-i18n="testimonial3">"RTech Solutions transformed our online presence with a stunning website. Their attention to detail and professional approach made the entire process smooth and efficient."</p>
+                                <div class="testimonial-author">
+                                    <h5 class="mb-1">Stanley Shonga</h5>
+                                    <p class="text-muted mb-0" data-i18n="managingDirector">Managing Director, <a href="https://www.shonga.co.za">Shonga</a></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Page -->
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <h2 class="text-center" data-i18n="meetTheTeam">Meet the Team</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 text-center">
+                    <img src="images/denis.png" alt="Denis Kasala portrait" class="img-fluid rounded-circle">
+                    <h4>Denis Kasala</h4>
+                    <p data-i18n="teamDescription">Software Engineer | AWS Cloud Practitioner | Tech Enthusiast</p>
+                    <div class="social-links mt-3">
+                        <ul class="list-unstyled text-center">
+                            <li><a href="https://www.linkedin.com/in/denis-kasala-353157b0" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i> Denis Kasala</a></li>
+                            <li><a href="https://github.com/TDKasala"><i class="fab fa-github"></i> TDKasala</a></li>
+                            <li><a href="https://twitter.com/denis_kasala"><i class="fab fa-twitter"></i> Denis Kasala</a></li>
+                            <li><a href="https://www.credly.com/users/tshibangu-denis-kasala/edit"><i class="fas fa-certificate"></i> Denis Kasala</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact-section py-5">
         <div class="container">
             <h2 class="text-center">Contact Us</h2>
             <ul class="list-unstyled text-center">
-                <li><strong>Email:</strong> raysuntech@gmail.com</li>
-                <li><strong>Contact Number:</strong> 01123456543</li>
-                <li><strong>Address:</strong> 26 1st Ave</li>
+                <li><a href="mailto:raysuntech@gmail.com"><i class="fas fa-envelope"></i> raysuntech@gmail.com</a></li>
+                <li><a href="tel:+0728964904"><i class="fas fa-phone"></i> 0728964904</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=26+1st+Avenue,+The+Hill,+Johannesburg,+2197">
+                    <i class="fas fa-map-marker-alt"></i> 26 1st Avenue, The Hill, Johannesburg, 2197</a></li>
             </ul>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer-section py-4 bg-dark text-white">
         <div class="container text-center">
-            <p>&copy; 2023 Raysun Tech. All rights reserved.</p>
+            <p data-i18n="copyright">&copy; 2025 RTech Solutions. All rights reserved.</p>
             <div class="social-links">
-                <a href="#" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="https://twitter.com/denis_kasala"><i class="fab fa-twitter"></i></a>
                 <a href="#" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <div class="mt-3">
-                <a href="#" class="text-white mx-2" data-toggle="modal" data-target="#termsModal">Terms</a>
-                <a href="#" class="text-white mx-2" data-toggle="modal" data-target="#privacyModal">Privacy Policy</a>
+                <a href="#" class="text-white mx-2" data-toggle="modal" data-target="#termsModal" data-i18n="terms">Terms</a>
+                <a href="#" class="text-white mx-2" data-toggle="modal" data-target="#privacyModal" data-i18n="privacy">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
     <!-- Modals -->
-    <!-- Terms Modal -->
     <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -259,72 +363,123 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Welcome to Raysun Tech. These terms and conditions outline the rules and regulations for the use of our website.</p>
-                    <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Raysun Tech if you do not agree to all of the terms and conditions stated on this page.</p>
+                    <p data-i18n="termsContent1">Welcome to Raysun Tech. These terms and conditions outline the rules and regulations for the use of our website.</p>
+                    <p data-i18n="termsContent2">By accessing this website we assume you accept these terms and conditions. Do not continue to use Raysun Tech if you do not agree to all of the terms and conditions stated on this page.</p>
                 </div>
-                <div class="modal-footer">
+                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Privacy Policy Modal -->
-    <div class="modal fade" id="privacyModal" tabindex="-1" role="dialog" aria-labelledby="privacyModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="privacyModalLabel">Privacy Policy</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Your privacy is important to us. It is Raysun Tech's policy to respect your privacy regarding any information we may collect from you across our website.</p>
-                    <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Updated JavaScript section -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Dark Mode and Language Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        //const languageToggle = document.getElementById('languageToggle');
+        const body = document.body;
+        //let isFrench = false;
+
+        // Dark Mode Logic
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            darkModeToggle.innerHTML = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        }
+
+        // Language Management
+        const translations = {
+            "welcome": { en: "Innovative IT Solutions for Your Business", fr: "Des solutions informatiques innovantes pour votre entreprise" },
+            "tagline": { en: "Providing top-notch web design, cloud services, and IT consulting.", fr: "Fourniture de services de conception web, de cloud et de conseil en informatique de premier ordre." },
+            "services": { en: "Services", fr: "Services" },
+            "about": { en: "About Us", fr: "À propos" },
+            "contact": { en: "Contact", fr: "Contact" },
+            "ourServices": { en: "Our Services", fr: "Nos Services" },
+            "webDesign": { en: "Web Design and Development", fr: "Conception et développement web" },
+            "webDesignDesc": { en: "Creating stunning and responsive websites tailored to your business needs.", fr: "Création de sites web magnifiques et réactifs adaptés à vos besoins." },
+            "cloudServices": { en: "Cloud Services", fr: "Services Cloud" },
+            "cloudServicesDesc": { en: "Offering scalable and secure cloud solutions on AWS, Azure, and Google Cloud.", fr: "Offre de solutions cloud évolutives et sécurisées sur AWS, Azure et Google Cloud." },
+            "itConsulting": { en: "IT Consulting", fr: "Conseil en informatique" },
+            "itConsultingDesc": { en: "Providing expert IT consulting to optimize your business operations.", fr: "Fourniture de conseils experts en informatique pour optimiser vos opérations commerciales." },
+            "contactUs": { en: "Contact Us", fr: "Nous contacter" },
+            "getQuote": { en: "Get a Quote", fr: "Obtenir un devis" },
+            "terms": { en: "Terms", fr: "Conditions" },
+            "privacy": { en: "Privacy Policy", fr: "Politique de confidentialité" },
+            "testimonialsHeading": { en: "What Our Clients Say", fr: "Ce que disent nos clients" },
+            "testimonial1": { en: "\"RTech Solutions transformed our online presence with a stunning website. Their attention to detail and professional approach made the entire process smooth and efficient.\"", fr: "\"RTech Solutions a transformé notre présence en ligne avec un site web magnifique. Leur souci du détail et approche professionnelle ont rendu l'ensemble du processus fluide et efficace.\"" },
+            "testimonial2": { en: "\"Excellent IT consulting services that helped us streamline our operations. Their team's expertise and dedication to our success was impressive.\"", fr: "\"D'excellents services de conseil en informatique qui nous ont aidés à rationaliser nos opérations. L'expertise de leur équipe et leur dévouement à notre succès étaient impressionnants.\"" },
+            "testimonial3": { en: "\"RTech Solutions transformed our online presence with a stunning website. Their attention to detail and professional approach made the entire process smooth and efficient.\"", fr: "\"RTech Solutions a transformé notre présence en ligne avec un site web magnifique. Leur souci du détail et approche professionnelle ont rendu l'ensemble du processus fluide et efficace.\"" },
+            "director": { en: "Director", fr: "Directeur" },
+            "managingDirector": { en: "Managing Director", fr: "Directeur Général" },
+            "meetTheTeam": { en: "Meet the Team", fr: "Rencontrez l'équipe" },
+            "teamDescription": { en: "Software Engineer | AWS Cloud Practitioner | Tech Enthusiast", fr: "Ingénieur Logiciel | Praticien AWS Cloud | Passionné de Technologie" },
+            "copyright": { en: "© 2025 RTech Solutions. All rights reserved.", fr: "© 2025 RTech Solutions. Tous droits réservés." },
+            "termsContent1": { en: "Welcome to Raysun Tech. These terms and conditions outline the rules and regulations for the use of our website.", fr: "Bienvenue chez Raysun Tech. Ces conditions générales définissent les règles et réglementations pour l'utilisation de notre site web." },
+            "termsContent2": { en: "By accessing this website we assume you accept these terms and conditions. Do not continue to use Raysun Tech if you do not agree to all of the terms and conditions stated on this page.", fr: "En accédant à ce site web, nous supposons que vous acceptez ces conditions générales. Ne continuez pas à utiliser Raysun Tech si vous n'acceptez pas toutes les conditions énoncées sur cette page." },
+            "privacyContent1": { en: "Your privacy is important to us. It is Raysun Tech's policy to respect your privacy regarding any information we may collect from you across our website.", fr: "Votre vie privée est importante pour nous. La politique de Raysun Tech est de respecter votre confidentialité concernant toute information que nous pourrions collecter sur notre site web." },
+            "privacyContent2": { en: "We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent.", fr: "Nous ne demandons des informations personnelles que lorsque nous en avons réellement besoin pour vous fournir un service. Nous les collectons par des moyens équitables et légaux, avec votre connaissance et votre consentement." }
+        };
+
+        //function updateContent() {
+            //const lang = isFrench ? 'fr' : 'en';
+            //document.documentElement.lang = lang;
+            //document.querySelectorAll('[data-i18n]').forEach(element => {
+              //  const key = element.dataset.i18n;
+                //if (translations[key]) {
+                  //  element.textContent = translations[key][lang];
+                //}
+            //});
+        //}
+
+        // Event Listeners
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        //languageToggle.addEventListener('click', () => {
+            //isFrench = !isFrench;
+            //languageToggle.textContent = isFrench ? 'EN' : 'FR';
+            //updateContent();
+        //});
+
+        // Initialization
+        function initializeApp() {
+            // Dark Mode
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+
+            // Language
+            //if (navigator.language.startsWith('fr')) {
+              //  isFrench = true;
+                //languageToggle.textContent = 'EN';
+                //updateContent();
+            //}
+
+            // Smooth Scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
-        });
 
-        // Navbar color change on scroll
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 50) {
-                document.querySelector('.navbar').style.backgroundColor = '#fff';
-            } else {
-                document.querySelector('.navbar').style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-
-        // Add animation class to elements when they come into view
-        const animateOnScroll = function() {
-            const elements = document.querySelectorAll('.services-section .col-md-4, .testimonial-card');
-            elements.forEach(element => {
-                if (element.getBoundingClientRect().top < window.innerHeight) {
-                    element.classList.add('animate__animated', 'animate__fadeInUp');
-                }
+            // Navbar Scroll
+            window.addEventListener('scroll', () => {
+                if (body.classList.contains('dark-mode')) return;
+                document.querySelector('.navbar').style.backgroundColor = 
+                    window.scrollY > 50 ? '#fff' : 'rgba(255, 255, 255, 0.95)';
             });
-        };
-        window.addEventListener('scroll', animateOnScroll);
+        }
+
+        initializeApp();
     </script>
 </body>
 </html>
